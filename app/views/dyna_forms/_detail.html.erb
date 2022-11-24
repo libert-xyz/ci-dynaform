@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "dyna_form_window" do %>
+  <div class="card card-body" id="dyna_form_window">
+    <div class="button-container">
+      <%= button_to "Edit Title/Description", dyna_form_edit_path(dyna_form), class: 'btn btn-outline-primary button-row' %>
+    </div>
+    <h4>
+      <%= dyna_form.title %>
+    </h4>
+    <p>
+      <%= dyna_form.description %>
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<% on_change ||= '' %>
+<div class="form-group">
+  <% invalid=obj.errors.include?(field) %>
+  <%= form_obj.label field%><br>
+  <%= form_obj.select field, options_for_select, {class: "form-control #{'is-invalid' if invalid}"}, {onChange: on_change} %><br>
+  <% if invalid %>
+    <div class="text-danger post-input-hint">
+      <% obj.errors.full_messages_for(field).each do |error_message| %>
+        <%= error_message %>.<br>
+      <% end %>
+    </div>
+  <% end %>
+</div>

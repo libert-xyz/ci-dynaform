@@ -1,0 +1,22 @@
+<% completed ||= false %>
+<%= turbo_frame_tag "submitted_form_#{id}" do %>
+  <%= form_tag submitted_form_response_save_progress_url, id: "submitted_form_#{id}" do %>
+    <% ordered_inputs.each do |submitted_form_response| %>
+      <div class="row">
+        <%= render partial: "submitted_form_responses/submitted_form_response", locals: {submitted_form_response: submitted_form_response, form_input: submitted_form_response.form_input, disabled: completed}%>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="button-container fixed-bottom fixed-bottom-padded">
+        <% if !completed %>
+          <%= button_tag "Complete!", name: "complete", value: true, class: "btn btn-success button-row btn-lg" %>
+          <%= button_tag "Save progress", class: "btn btn-outline-primary button-row btn-lg" %>
+        <% else %>
+          <div class="button-row">
+            <%= link_to "Return to DynaForm", root_url, class: "btn btn-primary button-row btn-lg" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,37 @@
+<%= turbo_frame_tag "user_dyna_form_window" do %>
+  <div class="container py-5">
+    <h2>Form Builder</h2>
+  </div>
+  <%= turbo_frame_tag dom_id(dyna_form) do %>
+    <div class="card card-body">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-body">
+            <h4><%= dyna_form.title%></h4>
+            <p>
+              <%= dyna_form.description %>
+            </p>
+            <%= turbo_stream_from "#{dom_id(dyna_form)}_form_input_samples" %>
+            <%= turbo_frame_tag "#{dom_id(dyna_form)}_form_input_samples" do %>
+              <% dyna_form.form_inputs.each do |form_input| %>
+                <%= render partial: "form_inputs/sample", locals: {form_input: form_input, submitted_form_response: SubmittedFormResponse.new(form_input_id: form_input.id), editing: dyna_form.published?} %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% unless dyna_form.locked? %>
+        <div class="row py-5">
+          <div class="col-lg-12">
+            <div class="card card-body">
+              <h4>Add inputs to DynaForm <%= dyna_form.title %></h4>
+              <% form_input = FormInput.new(dyna_form_id: dyna_form.id, input_type_id: Current.ordered_input_types.first.id) %>
+              <% submitted_form_response = SubmittedFormResponse.new(form_input: form_input) %>
+              <%= render partial: "form_inputs/form", locals: {form_input: form_input, dyna_form: dyna_form, submitted_form_response: submitted_form_response} %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

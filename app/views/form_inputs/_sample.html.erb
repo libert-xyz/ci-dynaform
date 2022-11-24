@@ -1,0 +1,12 @@
+<% editing ||= false %>
+<%= turbo_frame_tag "#{dom_id(form_input)}_sample" do %>
+  <div class="container py-5">
+    <%= render partial: "submitted_form_responses/#{form_input.input_type.ruby_klass.downcase}", locals: {sample: true, submitted_form_response: submitted_form_response} %>
+    <% if form_input.persisted? && !editing %>
+      <div class="button-row-container">
+        <%= button_to "Delete", form_input_delete_path(form_input), {method: :delete, class: 'button-row btn btn-danger'} %>
+        <%= button_to "Edit", form_input_edit_path(form_input), {method: :post, class: 'button-row btn btn-outline-primary'} %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

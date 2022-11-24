@@ -1,0 +1,25 @@
+<% sample ||= false %>
+<% val_arr = submitted_form_response.value&.split(',') || [] %>
+<div class="form-group">
+  <%= render partial: "submitted_form_responses/label_and_helper", locals: {form_input: submitted_form_response.form_input} %>
+  <% invalid = submitted_form_response.errors.full_messages.present? %>
+  <% if invalid %>
+    <div class="text-danger post-input-hint"><br>
+      <% submitted_form_response.errors.full_messages.each do |error_message| %>
+        <%= error_message %>.<br>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="form-check">
+    <% submitted_form_response.form_input.parsed_additional_attributes.each.with_index do |attr, idx| %>
+      <% id = sample ? idx : submitted_form_response.id %>
+      <%= check_box_tag "#{id}[]", attr, val_arr.include?(attr), class: 'form-check-input' %>
+      <label class="form-check-label" for="<%= submitted_form_response.id %>">
+        <%= attr %>
+      </label><br>
+    <% end %>
+  </div>
+
+    <br>
+
+</div>

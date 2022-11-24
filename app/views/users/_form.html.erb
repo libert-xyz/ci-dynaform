@@ -1,0 +1,12 @@
+<%= turbo_frame_tag dom_id(@user), target: "_top" do %>
+  <div class="card card-body">
+    <%= form_for user, as: :user, url: signup_url do |f|%>
+        <%= render partial: "form_elements/text_field_input", locals: {field: :email, obj: @user, form_obj: f} %>
+        <%= render partial: "form_elements/password_field_input", locals: {field: :password, obj: @user, form_obj: f} %>
+        <%= render partial: "form_elements/password_field_input", locals: {field: :password_confirmation, obj: @user, form_obj: f} %>
+        <div class="button-row-container">
+        <%= submit_tag "Create User", class: 'button-row btn btn-primary' %>
+        </div>
+    <%end%>
+  </div>
+<% end %>

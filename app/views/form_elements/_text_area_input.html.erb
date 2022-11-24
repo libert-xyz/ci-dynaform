@@ -1,0 +1,15 @@
+<% disabled ||= false %>
+<% hidden ||= false %>
+
+<div class="form-group" <%= 'style="display: none;"' if hidden %>>
+  <% invalid = obj.errors.include?(field) %>
+  <%= form_obj.label field%><br>
+  <%= form_obj.text_area field, disabled: disabled, class: "form-control #{'is-invalid' if invalid}" %><br>
+  <% if invalid %>
+    <div class="text-danger post-input-hint">
+      <% obj.errors.full_messages_for(field).each do |error_message| %>
+        <%= error_message %>.<br>
+      <% end %>
+    </div>
+  <% end %>
+</div>

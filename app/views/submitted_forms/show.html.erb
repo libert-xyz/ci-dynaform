@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="container">
+      <% if @submitted_form.completed %>
+        <div class="row is-warning">
+          <h4 class="text-center">
+            Completed forms are read-only. Changes cannot be made at this time.
+          </h4>
+        </div>
+      <% end %>
+      <h1><%= @submitted_form.dyna_form.title %></h1>
+      <p><%= @submitted_form.dyna_form.description %></p>
+          <%= render partial: "submission_form", locals: {ordered_inputs: @ordered_inputs, id: @submitted_form.id, completed: @submitted_form.completed} %>
+      </div>
+  </div>
+</div>

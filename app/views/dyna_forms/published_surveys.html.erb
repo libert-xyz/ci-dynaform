@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h1>Published surveys</h1>
+  </div>
+  <% @suppress_links = true %>
+  <%= turbo_frame_tag "published_dyna_forms" do %>
+    <%= render @dyna_forms %>
+  <% end %>
+</div>

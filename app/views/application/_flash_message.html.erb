@@ -1,0 +1,20 @@
+<%= turbo_frame_tag "flash_message" do %>
+  <% message ||= '' %>
+  <% status ||= "success" %>
+  <% if message.present? %>
+    <div id="flash-message-container">
+      <main id="flash-message-content">
+        <div class="flash-message-controls">
+          <a class="clickable" onclick="app.FlashMessageControls.closeFlash()">
+            <%= icon("x-lg") %>
+          </a>
+        </div>
+        <div class="flash-message-content">
+          <div class="flash-message text-center is-<%= status %>">
+            <%= message %>
+          </div>
+        </div>
+      </main>
+    </div>
+  <% end %>
+<% end %>

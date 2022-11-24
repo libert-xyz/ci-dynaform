@@ -1,0 +1,3 @@
+<div class="container py-5 border-top border-bottom">
+  <%= render partial: "submitted_form_responses/#{submitted_form_response.form_input.input_type.ruby_klass.downcase}", locals: {submitted_form_response: submitted_form_response, sample: disabled} %>
+</div>

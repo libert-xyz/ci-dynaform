@@ -1,0 +1,30 @@
+<%= turbo_frame_tag dom_id(dyna_form) do %>
+  <div class="card card-body">
+    <h4><%= dyna_form.title%></h4>
+    <p>
+      <%= dyna_form.description %>
+    </p>
+    <% if dyna_form.creator == Current.user && dyna_form.published? %>
+      <p>
+        Share this url to allow others to take your survey: <%= link_to take_survey_url(dyna_form), take_survey_url(dyna_form), target: "_blank" %>
+      </p>
+    <% end %>
+    <div class="button-row-container">
+      <% if dyna_form.creator == Current.user %>
+        <% if dyna_form.locked %>
+          <%= button_to "Results (#{dyna_form.submitted_forms.are_completed.count})", dyna_form_results_path(dyna_form), class: "button-row btn btn-outline-info" unless @suppress_links %>
+        <% end %>
+        <% if dyna_form.published? %>
+          <%= button_to "Unpublish", {action: :unpublish, id: dyna_form.id, controller: :dyna_forms}, {class: "button-row btn btn-warning"} %>
+        <% else %>
+          <%= button_to "Publish", {action: :publish, id: dyna_form.id, controller: :dyna_forms}, {title: dyna_form.form_inputs.empty? ? "Form inputs are required to publish" : "", class: "button-row btn btn-success", disabled: dyna_form.form_inputs.empty?} %>
+        <% end %>
+        <%= button_to "#{dyna_form.locked ? 'Preview' : 'Form Builder'}", {action: :details, id: dyna_form.id, controller: :dyna_forms}, {class: "button-row btn btn-info"} unless @suppress_links %>
+        <%= button_to "Delete", {action: :destroy, id: dyna_form.id, controller: :dyna_forms}, {class: "button-row btn btn-danger", method: :delete} %>
+      <% else %>
+        <%= link_to "Take Survey", take_survey_path(dyna_form), class: "btn btn-primary button-row", target: "_blank" %>
+      <% end %>
+    </div>
+    <i>Author: <%= dyna_form.creator.email %></i>
+  </div>
+<% end %>

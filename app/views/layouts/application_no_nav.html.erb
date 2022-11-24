@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynaform</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= turbo_include_tags %>
+  </head>
+
+  <body>
+    <% if Current.session %>
+      <%= turbo_stream_from dom_id(Current.session) %>
+    <% end %>
+    <%= render partial: "flash_message" %>
+    <div class="container">
+      <h1 class="header-insight text-center"><%= link_to "DynaForm", root_url, class: 'no-decor' %></h1>
+      <%= yield %>
+    </div>
+  </body>
+  <%= render partial: "footer" %>
+</html>

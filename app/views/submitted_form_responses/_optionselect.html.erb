@@ -1,0 +1,16 @@
+<% sample ||= false %>
+<div class="form-group">
+  <%= render partial: "submitted_form_responses/label_and_helper", locals: {form_input: submitted_form_response.form_input} %>
+  <% invalid = submitted_form_response.errors.full_messages.present? %>
+  <% if invalid %>
+    <br>
+    <div class="text-danger post-input-hint">
+      <% submitted_form_response.errors.full_messages.each do |error_message| %>
+        <%= error_message %>.<br>
+      <% end %>
+    </div>
+  <% end %>
+  <%= select_tag submitted_form_response.id, options_for_select(submitted_form_response.form_input.parsed_additional_attributes, submitted_form_response.value), include_blank: true %>
+
+
+</div>

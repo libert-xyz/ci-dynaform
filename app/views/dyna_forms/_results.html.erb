@@ -1,0 +1,51 @@
+<%= turbo_frame_tag "user_dyna_form_window" do %>
+  <div class="container py-5">
+    <h2>Completed Results</h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <% headers.each do |header| %>
+          <th>
+            <%= header[0] %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% submitted_data.each do |row| %>
+        <tr>
+          <% headers.each do |header| %>
+            <td><%= row[header[1]] %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="container py-5">
+    <h2>Pending Results</h2>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <% headers.each do |header| %>
+          <th>
+            <%= header[0] %>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% pending_data.each do |row| %>
+        <tr>
+          <% headers.each do |header| %>
+            <td><%= row[header[1]] %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

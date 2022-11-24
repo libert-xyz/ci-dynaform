@@ -1,0 +1,105 @@
+// Import Bootstrap v5
+@import "~bootstrap/scss/bootstrap";
+
+.post-input-hint {
+  position: relative;
+  top: -1.5em;
+  font-size: 1em;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+select {
+  min-width: 150px;
+}
+
+.col-center {
+  margin: auto;
+}
+
+.input-title {
+   font-size: 1.5em;
+   font-weight: 500;
+ }
+
+ .button-row-container {
+   padding: 1em 0em;
+ }
+
+.button-row {
+  width: auto;
+  float: right;
+  display: inline;
+  margin-left: .5em;
+}
+
+.is-warning {
+  background: #edc558;
+}
+
+#flash-message-container {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  display: table-row;
+  top: 0;
+
+  .flash-message {
+    font-size: 1.5em;
+    font-weight: 200;
+
+    &.is-error {
+      background: #ffb0b0;
+    }
+
+    &.is-success {
+      background: #c1f2bb;
+    }
+
+    &.is-warning {
+      background: #edc558;
+    }
+  }
+
+  .flash-message-content {
+    display: inline;
+    max-width: 40%;
+  }
+
+  .flash-message-controls {
+    position: absolute;
+    margin-left: 60%;
+    margin-top: 0em;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.nav-item.active {
+  font-weight: 600;
+}
+
+h1.header-insight {
+  font-size: 5em;
+  font-weight: 300;
+
+  &--md {
+    font-size: 3em;
+    font-weight: 300;
+  }
+}
+
+a.no-decor {
+  text-decoration: none;
+  color: black;
+}
+
+.fixed-bottom-padded {
+  padding-right: 10%;
+  padding-bottom: 2%;
+}

@@ -1,0 +1,12 @@
+<div class="form-group">
+  <% invalid=obj.errors.include?(field) %>
+  <%= form_obj.label field%><br>
+  <%= form_obj.check_box field %><br>
+  <% if invalid %>
+    <div class="text-danger post-input-hint">
+      <% obj.errors.full_messages_for(field).each do |error_message| %>
+        <%= error_message %>.<br>
+      <% end %>
+    </div>
+  <% end %>
+</div>

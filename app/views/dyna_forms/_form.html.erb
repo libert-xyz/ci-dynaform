@@ -1,0 +1,9 @@
+  <div class="card card-body" id="<%= dom_id(dyna_form)%>">
+  <%= form_with(model: dyna_form) do |f| %>
+    <%= render partial: "form_elements/text_field_input", locals: {obj: dyna_form, field: :title, form_obj: f} %>
+    <%= render partial: "form_elements/text_area_input", locals: {obj: dyna_form, field: :description, form_obj: f} %>
+    <div class="button-row-container">
+      <%= f.submit "Save draft and start building", class: "btn btn-primary button-row" %>
+    </div>
+<% end %>
+</div>

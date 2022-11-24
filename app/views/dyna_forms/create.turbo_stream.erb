@@ -1,0 +1,2 @@
+<%= turbo_stream.replace("new_dyna_form", partial: "dyna_forms/form", locals: {dyna_form: DynaForm.new}) %>
+<%= turbo_stream.replace("user_dyna_form_window", partial: "dyna_forms/dyna_form_with_inputs", locals: {dyna_form: @dyna_form}) %>

@@ -1,0 +1,15 @@
+<% sample ||= false %>
+<div class="form-group">
+  <%= render partial: "submitted_form_responses/label_and_helper", locals: {form_input: submitted_form_response.form_input} %>
+  <% invalid = submitted_form_response.errors.full_messages.present? %>
+  <%= text_field_tag submitted_form_response.id, submitted_form_response.value, class: "form-control #{'is-invalid' if invalid}", disabled: sample %>
+
+  <% if invalid %>
+    <br>
+    <div class="text-danger post-input-hint">
+      <% submitted_form_response.errors.full_messages.each do |error_message| %>
+        <%= error_message %>.<br>
+      <% end %>
+    </div>
+  <% end %>
+</div>

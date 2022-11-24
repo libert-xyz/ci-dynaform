@@ -1,0 +1,24 @@
+<% editing ||= false %>
+<%= turbo_frame_tag dom_id(form_input) do %>
+  <%= form_with(model: [dyna_form, form_input], id: dom_id(form_input)) do |f| %>
+    <%= render partial: "form_elements/text_field_input", locals: {obj: form_input, field: :label, form_obj: f} %>
+    <%= render partial: "form_elements/text_area_input", locals: {obj: form_input, field: :helper_text, form_obj: f} %>
+    <div class="row">
+      <div class="col-sm-7">
+        <h6>Preview new input</h6>
+        <%= render partial: "form_inputs/sample", locals: {form_input: form_input, submitted_form_response: submitted_form_response, editing: editing} %>
+
+      </div>
+      <div class="col-sm-5">
+        <%= render partial: "form_elements/select_input", locals: {obj: form_input, field: :input_type_id, form_obj: f, options_for_select: Current.ordered_input_types.map { |input_type| [input_type.label, input_type.id] }, on_change: 'javascript:window.toggleAdditionalAttributes()'} %>
+        <%= render partial: "form_elements/check_box_input", locals: {obj: form_input, field: :required, form_obj: f} %>
+        <%= render partial: "form_elements/text_field_input", locals: {obj: form_input, field: :additional_attributes, form_obj: f, disabled: !form_input.input_type.allows_additional_attributes?, hidden: !form_input.input_type.allows_additional_attributes?} %>
+      </div>
+    </div>
+    <div class="button-row-container">
+      <%= f.button "Update preview", name: 'sample', value: true, class: 'button-row btn btn-outline-primary' %>
+      <%= f.submit "Save", class: 'button-row btn btn-primary' %>
+    </div>
+    </div>
+  <% end %>
+<% end %>
